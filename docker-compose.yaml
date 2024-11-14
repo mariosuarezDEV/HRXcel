@@ -1,0 +1,71 @@
+networks:
+  hrxcel_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+          gateway: 192.168.2.1
+
+services:
+
+  administrador:
+    image: mysql:8.0
+    container_name: mysql_administrador
+    environment:
+      MYSQL_ROOT_PASSWORD: edqnLMCSf31.
+      MYSQL_DATABASE: administrador_hrxcel
+      MYSQL_USER: administrador
+      MYSQL_PASSWORD: edqnLMCSf31.
+    volumes:
+      - administrador_hrxcel:/var/lib/mysql
+    networks:
+      hrxcel_net:
+        ipv4_address: 192.168.2.2
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "4030:3306"
+
+  empleados:
+    image: mysql:8.0
+    container_name: mysql_empleados
+    environment:
+      MYSQL_ROOT_PASSWORD: edqnLMCSf31.
+      MYSQL_DATABASE: empleados_hrxcel
+      MYSQL_USER: administrador
+      MYSQL_PASSWORD: edqnLMCSf31.
+    volumes:
+      - empleados_hrxcel:/var/lib/mysql
+    networks:
+      hrxcel_net:
+        ipv4_address: 192.168.2.3
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "4031:3306"
+
+  mongodb:
+    image: mongo:latest
+    container_name: data_analytics
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: edqnLMCSf31.
+      MONGO_INITDB_DATABASE: hrxcel_analytics
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      hrxcel_net:
+        ipv4_address: 192.168.2.15
+    ports:
+      - "27017:27017"
+
+volumes:
+  administrador_hrxcel:
+  empleados_hrxcel:
+  mongo_data:
