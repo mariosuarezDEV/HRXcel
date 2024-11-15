@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "empleados.apps.EmpleadosConfig",
     "departamentos.apps.DepartamentosConfig",
+    "puestos.apps.PuestosConfig",
 ]
 
 MIDDLEWARE = [
@@ -101,10 +102,18 @@ DATABASES = {
         'PASSWORD': 'edqnLMCSf31.',
         'HOST': 'localhost',
         'PORT': '4032',
+    },
+    "puestos": {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'puestos_prismrh',
+        'USER': 'administrador',
+        'PASSWORD': 'edqnLMCSf31.',
+        'HOST': 'localhost',
+        'PORT': '4033',
     }
 }
 
-DATABASE_ROUTERS = ['router.router.AdministradorDBRouter', 'router.router.EmpleadosRouter', 'router.router.DepartamentosRouter']
+DATABASE_ROUTERS = ['router.router.AdministradorDBRouter', 'router.router.EmpleadosRouter', 'router.router.DepartamentosRouter', 'router.router.PuestosRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

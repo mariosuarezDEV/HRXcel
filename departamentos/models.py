@@ -31,4 +31,6 @@ class Departamento(models.Model):
     fecha_creacion = models.DateField(verbose_name="Fecha de creacion", null=True, blank=True, auto_now_add=True)
     fecha_modificacion = models.DateField(verbose_name="Fecha de modificacion", null=True, blank=True, auto_now=True)
     
-    
+    # Metodos
+    def __str__(self):
+        return self.nombre

@@ -1,4 +1,4 @@
-# HRXcel: Sistema Empresarial de Gestión de Recursos Humanos
+# Prism RH: Sistema Empresarial de Gestión de Recursos Humanos
 
 HRXcel es un poderoso sistema de información de recursos humanos (HRIS) diseñado para impulsar la excelencia en la gestión del capital humano en empresas de todo tamaño. Construido sobre una arquitectura sólida y flexible, HRXcel integra de manera fluida los principales procesos de administración del talento, permitiendo a las organizaciones administrar de manera estratégica y eficiente su fuerza laboral.
 

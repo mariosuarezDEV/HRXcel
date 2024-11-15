@@ -71,7 +71,29 @@ services:
     ports:
       - "4032:3306"
 
+  puestos:
+    image: mysql:8.0
+    container_name: mysql_puestos
+    environment:
+      MYSQL_ROOT_PASSWORD: edqnLMCSf31.
+      MYSQL_DATABASE: puestos_prismrh
+      MYSQL_USER: administrador
+      MYSQL_PASSWORD: edqnLMCSf31.
+    volumes:
+      - puestos_prismrh:/var/lib/mysql
+    networks:
+      prismrh_net:
+        ipv4_address: 192.168.2.5
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "4033:3306"
+
 volumes:
   administrador_prismrh:
   empleados_prismrh:
   departamentos_prismrh:
+  puestos_prismrh:
