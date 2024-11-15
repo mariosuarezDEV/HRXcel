@@ -51,3 +51,7 @@ class Empleado(models.Model):
     genero = models.CharField(max_length=1, choices=GENERO, verbose_name="Genero", null=True, blank=True)
     estado_civil = models.CharField(max_length=1, choices=ESTADO_CIVIL, verbose_name="Estado civil", null=True, blank=True)
     escolaridad = models.CharField(max_length=1, choices=ESCOLARIDAD, verbose_name="Escolaridad", null=True, blank=True)
+    
+    # Auditoria
+    fecha_creacion = models.DateField(verbose_name="Fecha de creacion", null=True, blank=True, auto_now_add=True)
+    fecha_modificacion = models.DateField(verbose_name="Fecha de modificacion", null=True, blank=True, auto_now=True)

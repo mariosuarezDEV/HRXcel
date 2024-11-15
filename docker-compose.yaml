@@ -1,5 +1,5 @@
 networks:
-  hrxcel_net:
+  prismrh_net:
     driver: bridge
     ipam:
       config:
@@ -13,13 +13,13 @@ services:
     container_name: mysql_administrador
     environment:
       MYSQL_ROOT_PASSWORD: edqnLMCSf31.
-      MYSQL_DATABASE: administrador_hrxcel
+      MYSQL_DATABASE: administrador_prismrh
       MYSQL_USER: administrador
       MYSQL_PASSWORD: edqnLMCSf31.
     volumes:
-      - administrador_hrxcel:/var/lib/mysql
+      - administrador_prismrh:/var/lib/mysql
     networks:
-      hrxcel_net:
+      prismrh_net:
         ipv4_address: 192.168.2.2
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -34,13 +34,13 @@ services:
     container_name: mysql_empleados
     environment:
       MYSQL_ROOT_PASSWORD: edqnLMCSf31.
-      MYSQL_DATABASE: empleados_hrxcel
+      MYSQL_DATABASE: empleados_prismrh
       MYSQL_USER: administrador
       MYSQL_PASSWORD: edqnLMCSf31.
     volumes:
-      - empleados_hrxcel:/var/lib/mysql
+      - empleados_prismrh:/var/lib/mysql
     networks:
-      hrxcel_net:
+      prismrh_net:
         ipv4_address: 192.168.2.3
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -49,23 +49,29 @@ services:
       retries: 5
     ports:
       - "4031:3306"
-
-  mongodb:
-    image: mongo:latest
-    container_name: data_analytics
+  
+  departamentos:
+    image: mysql:8.0
+    container_name: mysql_departamentos
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: edqnLMCSf31.
-      MONGO_INITDB_DATABASE: hrxcel_analytics
+      MYSQL_ROOT_PASSWORD: edqnLMCSf31.
+      MYSQL_DATABASE: departamentos_prismrh
+      MYSQL_USER: administrador
+      MYSQL_PASSWORD: edqnLMCSf31.
     volumes:
-      - mongo_data:/data/db
+      - departamentos_prismrh:/var/lib/mysql
     networks:
-      hrxcel_net:
-        ipv4_address: 192.168.2.15
+      prismrh_net:
+        ipv4_address: 192.168.2.4
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
-      - "27017:27017"
+      - "4032:3306"
 
 volumes:
-  administrador_hrxcel:
-  empleados_hrxcel:
-  mongo_data:
+  administrador_prismrh:
+  empleados_prismrh:
+  departamentos_prismrh:
