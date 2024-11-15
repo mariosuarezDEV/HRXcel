@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 # Opciones de genero
 GENERO = (
     ('M', 'Masculino'),
@@ -33,9 +31,11 @@ class Empleado(models.Model):
     segundo_nombre = models.CharField(max_length=50, verbose_name="Segundo nombre", null=True, blank=True)
     primer_apellido = models.CharField(max_length=50, verbose_name="Primer apellido", null=False, blank=False)
     segundo_apellido = models.CharField(max_length=50, verbose_name="Segundo apellido", null=False, blank=False)
+    
     # Contacto
     telefono = models.CharField(max_length=10, verbose_name="Telefono", null=True, blank=True)
     correo = models.EmailField(max_length=100, verbose_name="Correo", null=True, blank=True)
+    
     # Ubicacion
     calle = models.CharField(max_length=100, verbose_name="Calle", null=True, blank=True)
     numero_exterior = models.CharField(max_length=10, verbose_name="Numero exterior", null=True, blank=True)
@@ -45,6 +45,7 @@ class Empleado(models.Model):
     ciudad = models.CharField(max_length=100, verbose_name="Ciudad", null=True, blank=True)
     estado = models.CharField(max_length=100, verbose_name="Estado", null=True, blank=True)
     pais = models.CharField(max_length=100, verbose_name="Pais", null=True, blank=True)
+    
     # Informacion personal
     fecha_nacimiento = models.DateField(verbose_name="Fecha de nacimiento", null=True, blank=True)
     genero = models.CharField(max_length=1, choices=GENERO, verbose_name="Genero", null=True, blank=True)
